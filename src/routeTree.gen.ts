@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as HealthyRouteImport } from './routes/healthy'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as QrRouteImport } from './routes/qr'
@@ -17,6 +18,11 @@ import { Route as QrRouteImport } from './routes/qr'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HealthyRoute = HealthyRouteImport.update({
@@ -37,12 +43,14 @@ const QrRoute = QrRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/healthy': typeof HealthyRoute
   '/menu': typeof MenuRoute
   '/qr': typeof QrRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/healthy': typeof HealthyRoute
   '/menu': typeof MenuRoute
   '/qr': typeof QrRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/healthy': typeof HealthyRoute
   '/menu': typeof MenuRoute
   '/qr': typeof QrRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/healthy' | '/menu' | '/qr'
+  fullPaths: '/' | '/analytics' | '/healthy' | '/menu' | '/qr'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/healthy' | '/menu' | '/qr'
-  id: '__root__' | '/' | '/healthy' | '/menu' | '/qr'
+  to: '/' | '/analytics' | '/healthy' | '/menu' | '/qr'
+  id: '__root__' | '/' | '/analytics' | '/healthy' | '/menu' | '/qr'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
   HealthyRoute: typeof HealthyRoute
   MenuRoute: typeof MenuRoute
   QrRoute: typeof QrRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/healthy': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
   HealthyRoute: HealthyRoute,
   MenuRoute: MenuRoute,
   QrRoute: QrRoute,
