@@ -162,3 +162,30 @@
     transform: none;
   }
 }
+
+/* Print: only the table signage cards, clean on white */
+@media print {
+  body {
+    background: #ffffff !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .bg-scene {
+    background: #ffffff !important;
+  }
+
+  .print-area {
+    margin-top: 0 !important;
+    gap: 0.5in !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .signage-card {
+    animation: none !important;
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+}
