@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Dumbbell, Flame, Scale } from "lucide-react";
 import { Scene, MenuNav } from "@/components/Chrome";
 import { HEALTHY_MENU, GOAL_LABELS, type Goal } from "@/data/menu";
+import { useTrackScan } from "@/lib/track";
 
 export const Route = createFileRoute("/healthy")({
   head: () => ({
@@ -42,6 +43,7 @@ const FILTERS = ["all", "high-protein", "low-calorie", "weight-management"] as c
 type Filter = (typeof FILTERS)[number];
 
 function HealthyMenuPage() {
+  useTrackScan("healthy");
   const [filter, setFilter] = useState<Filter>("all");
   const items =
     filter === "all"
