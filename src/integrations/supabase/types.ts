@@ -14,7 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      menu_scans: {
+        Row: {
+          created_at: string
+          device: string
+          id: string
+          menu_type: string
+          session_id: string | null
+          table_label: string
+        }
+        Insert: {
+          created_at?: string
+          device?: string
+          id?: string
+          menu_type?: string
+          session_id?: string | null
+          table_label?: string
+        }
+        Update: {
+          created_at?: string
+          device?: string
+          id?: string
+          menu_type?: string
+          session_id?: string | null
+          table_label?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
