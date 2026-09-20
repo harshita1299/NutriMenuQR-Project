@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Scene, MenuNav } from "@/components/Chrome";
 import { NORMAL_MENU } from "@/data/menu";
+import { useTrackScan } from "@/lib/track";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/menu")({
 const CATEGORIES = ["All", "Starters", "Mains", "Desserts"] as const;
 
 function NormalMenuPage() {
+  useTrackScan("normal");
   const [cat, setCat] = useState<(typeof CATEGORIES)[number]>("All");
   const items =
     cat === "All" ? NORMAL_MENU : NORMAL_MENU.filter((i) => i.category === cat);

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Dumbbell, Flame, Scale } from "lucide-react";
 import { Scene, Header } from "@/components/Chrome";
+import { useTrackScan } from "@/lib/track";
 import tagliatelle from "@/assets/tagliatelle.jpg";
 import salmonBowl from "@/assets/salmon-bowl.jpg";
 import quinoaSalad from "@/assets/quinoa-salad.jpg";
@@ -34,6 +35,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { table } = Route.useSearch();
+  useTrackScan("choice", table);
   return (
     <Scene>
       <Header table={table ? `Table ${table}` : undefined} />
