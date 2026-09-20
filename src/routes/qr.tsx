@@ -93,6 +93,7 @@ function QrStudioPage() {
         <div className="rise-in flex items-center gap-3">
           <Link
             to="/"
+            search={{}}
             aria-label="Back to menu"
             className="frost-soft text-ink grid size-10 place-items-center rounded-full"
           >

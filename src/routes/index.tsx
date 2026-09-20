@@ -7,12 +7,10 @@ import quinoaSalad from "@/assets/quinoa-salad.jpg";
 import chickenPlate from "@/assets/chicken-plate.jpg";
 
 export const Route = createFileRoute("/")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    table:
-      typeof search.table === "string" && search.table.trim()
-        ? search.table.trim()
-        : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { table?: string } => {
+    const t = typeof search.table === "string" ? search.table.trim() : "";
+    return t ? { table: t } : {};
+  },
   head: () => ({
     meta: [
       { title: "Verde Bistro — Scan & Choose Your Menu" },
