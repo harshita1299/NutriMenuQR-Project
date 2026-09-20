@@ -184,6 +184,13 @@ function Index() {
         >
           Staff: QR codes &amp; table signage
         </Link>
+        <span className="text-inksoft mx-2 text-xs">·</span>
+        <Link
+          to="/analytics"
+          className="text-inksoft text-xs font-medium underline-offset-2 hover:underline"
+        >
+          Scan analytics
+        </Link>
       </p>
     </Scene>
   );
