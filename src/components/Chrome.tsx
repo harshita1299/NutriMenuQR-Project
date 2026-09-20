@@ -13,7 +13,7 @@ export function Scene({ children }: { children: ReactNode }) {
   );
 }
 
-export function Header({ table = "Table 12" }: { table?: string }) {
+export function Header({ table = "Table 12" }: { table?: string | undefined }) {
   return (
     <header className="frost rise-in flex items-center justify-between rounded-3xl px-5 py-4">
       <Link to="/" className="flex items-center gap-3">

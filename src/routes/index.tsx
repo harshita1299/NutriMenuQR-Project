@@ -7,6 +7,10 @@ import quinoaSalad from "@/assets/quinoa-salad.jpg";
 import chickenPlate from "@/assets/chicken-plate.jpg";
 
 export const Route = createFileRoute("/")({
+  validateSearch: (search: Record<string, unknown>): { table?: string } => {
+    const t = typeof search["table"] === "string" ? search["table"].trim() : "";
+    return t ? { table: t } : {};
+  },
   head: () => ({
     meta: [
       { title: "Verde Bistro — Scan & Choose Your Menu" },
@@ -29,9 +33,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { table } = Route.useSearch();
   return (
     <Scene>
-      <Header />
+      <Header table={table ? `Table ${table}` : undefined} />
 
       <section className="mt-6 grid gap-5">
         {/* Normal menu choice */}
@@ -169,6 +174,14 @@ function Index() {
 
       <p className="text-inksoft rise-in mt-6 text-center text-xs [animation-delay:300ms]">
         No app download · No sign-up · Just scan &amp; browse
+      </p>
+      <p className="rise-in mt-2 text-center [animation-delay:320ms]">
+        <Link
+          to="/qr"
+          className="text-inksoft text-xs font-medium underline-offset-2 hover:underline"
+        >
+          Staff: QR codes &amp; table signage
+        </Link>
       </p>
     </Scene>
   );
